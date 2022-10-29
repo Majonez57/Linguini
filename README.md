@@ -1,6 +1,6 @@
 # linguini
 
-A new Flutter project.
+An app designed to reduce food waste and encourage cooking
 
 ## Getting Started
 
