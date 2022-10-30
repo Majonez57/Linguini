@@ -29,6 +29,13 @@ class RecipeTitle extends StatelessWidget {
                     textScaleFactor: 3,
                     style: const TextStyle(
                       color: Colors.white,
+                      shadows: [
+                        Shadow( // bottomRight
+                          offset: Offset(1.5, -1.5),
+                          blurRadius: 8.0,
+                          color: Colors.black
+                        ),
+                      ],
                     ),
                   ),
                 ],

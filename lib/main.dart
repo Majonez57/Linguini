@@ -31,7 +31,6 @@ class LinguiniApp extends StatelessWidget {
       ),
       initialRoute: '/',
       onGenerateRoute: (RouteSettings settings) {
-        print('build route for ${settings.name}');
         var routes = <String, WidgetBuilder>{
           '/': (context) => const Home(),
           '/recipes/list': (context) => RecipeListPage(recipeId: settings.arguments as List<String>),
@@ -39,9 +38,6 @@ class LinguiniApp extends StatelessWidget {
         };
         WidgetBuilder builder = routes[settings.name]!;
         return MaterialPageRoute(builder: (ctx) => builder(ctx));
-      },
-
-      routes: {
       },
     );
   }

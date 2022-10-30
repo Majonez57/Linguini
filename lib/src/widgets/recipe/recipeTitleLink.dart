@@ -33,6 +33,13 @@ class RecipeTitleLink extends StatelessWidget {
                     textScaleFactor: 2,
                     style: const TextStyle(
                       color: Colors.white,
+                      shadows: [
+                        Shadow( // bottomRight
+                          offset: Offset(1.5, -1.5),
+                          blurRadius: 8.0,
+                          color: Colors.black
+                        ),
+                      ]
                     ),
                   ),
                   Text(
@@ -41,6 +48,13 @@ class RecipeTitleLink extends StatelessWidget {
                     textScaleFactor: 1,
                     style: const TextStyle(
                       color: Colors.white,
+                      shadows: [
+                        Shadow( // bottomRight
+                          offset: Offset(1.5, -1.5),
+                          blurRadius: 8.0,
+                          color: Colors.black
+                        ),
+                      ]
                     ),
                   ),
                 ],

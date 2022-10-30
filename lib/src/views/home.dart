@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,17 +11,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  bool _sus = false;
+  final ImagePicker _picker = ImagePicker();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _sus = !_sus;
-    });
+  Future<List<String>?> _getItems() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile == null) return null;
+
+    final uri = Uri.http("10.0.247.53:5000", "/tags");
+
+    http.MultipartRequest request = http.MultipartRequest('POST', uri);
+    request.files.add(
+      http.MultipartFile.fromBytes(
+        'image',
+        await pickedFile.readAsBytes(),
+        filename: 'test.jpg',
+      ),
+    );
+
+    http.StreamedResponse r = await request.send();
+
+    if (r.statusCode != 200) return null;
+
+    return List.from(jsonDecode(await r.stream.bytesToString()));
   }
 
   @override
@@ -57,12 +72,19 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             IconButton(
               iconSize: 100.0,
-              onPressed: () => Navigator.pushNamed(context, '/recipes/list', arguments: <String>["egg"]),
+              onPressed: () {
+                _getItems().then((value) {
+                  if (value == null) return;
+                  print(value);
+                  Navigator.pushNamed(context, '/recipes/list',
+                      arguments: value);
+                });
+              },
               icon: const Icon(Icons.add_a_photo),
             ),
           ],
         ),
-      ),// This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

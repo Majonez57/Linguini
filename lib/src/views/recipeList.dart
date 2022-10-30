@@ -45,7 +45,7 @@ class _RecipePageState extends State<RecipeListPage> {
   void initState() {
     super.initState();
 
-    recipes = _fetchRecipes(["egg"]);
+    recipes = _fetchRecipes(widget.recipeId);
   }
 
   @override
@@ -54,8 +54,7 @@ class _RecipePageState extends State<RecipeListPage> {
         appBar: AppBar(
           title: const Text("Recipe"),
         ),
-        body: Center(
-            child: FutureBuilder<List<RecipeShort>>(
+        body: FutureBuilder<List<RecipeShort>>(
                 future: recipes,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -77,7 +76,8 @@ class _RecipePageState extends State<RecipeListPage> {
                     return const Text('Error fetching recipes!');
                   }
 
-                  return const CircularProgressIndicator();
-                })));
+                  return const Center(
+                    child: CircularProgressIndicator());
+                }));
   }
 }

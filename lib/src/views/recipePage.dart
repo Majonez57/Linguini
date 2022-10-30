@@ -55,7 +55,7 @@ class _RecipePageState extends State<RecipePage> {
         appBar: AppBar(
           title: const Text("Recipe"),
         ),
-        body: Center(child: FutureBuilder<Recipe>(
+        body: FutureBuilder<Recipe>(
             future: recipe,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -85,7 +85,7 @@ class _RecipePageState extends State<RecipePage> {
                 return Text('${snapshot.hasError}');
               }
 
-              return const CircularProgressIndicator();
-            })));
+              return Center(child: const CircularProgressIndicator());
+            }));
   }
 }
