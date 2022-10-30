@@ -58,20 +58,24 @@ class _RecipePageState extends State<RecipeListPage> {
                 future: recipes,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        var item = snapshot.data![index];
+                    return Column(children: [
+                      Card(child: Padding(padding: const EdgeInsets.all(8.0), child: Text("Recipes with ${widget.recipeId.join(", ")}")),),
+                    Expanded(child:
+                      ListView.builder(
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          var item = snapshot.data![index];
 
-                        return RecipeTitleLink(
-                          title: item.title,
-                          shortDescription: item.shortDescription,
-                          imageSrc: item.imageSrc,
-                          onTap: () =>
-                              Navigator.pushNamed(context, '/recipes/view', arguments: item.id),
-                        );
-                      },
-                    );
+                          return RecipeTitleLink(
+                            title: item.title,
+                            shortDescription: item.shortDescription,
+                            imageSrc: item.imageSrc,
+                            onTap: () =>
+                                Navigator.pushNamed(context, '/recipes/view', arguments: item.id),
+                          );
+                        },
+                      )),
+                    ]);
                   } else if (snapshot.hasError) {
                     return const Text('Error fetching recipes!');
                   }

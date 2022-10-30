@@ -70,18 +70,21 @@ class _HomeState extends State<Home> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            IconButton(
-              iconSize: 100.0,
-              onPressed: () {
-                _getItems().then((value) {
-                  if (value == null) return;
-                  print(value);
-                  Navigator.pushNamed(context, '/recipes/list',
-                      arguments: value);
-                });
-              },
-              icon: const Icon(Icons.add_a_photo),
-            ),
+            Stack(children: [
+              Image.file()
+              IconButton(
+                iconSize: 100.0,
+                onPressed: () {
+                  _getItems().then((value) {
+                    if (value == null) return;
+                    print(value);
+                    Navigator.pushNamed(context, '/recipes/list',
+                        arguments: value);
+                  });
+                },
+                icon: const Icon(Icons.add_a_photo),
+              ),
+            ],
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
