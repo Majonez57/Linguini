@@ -70,8 +70,6 @@ class _HomeState extends State<Home> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Stack(children: [
-              Image.file()
               IconButton(
                 iconSize: 100.0,
                 onPressed: () {
@@ -85,7 +83,6 @@ class _HomeState extends State<Home> {
                 icon: const Icon(Icons.add_a_photo),
               ),
             ],
-          ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
