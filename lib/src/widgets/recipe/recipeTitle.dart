@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 class RecipeTitle extends StatelessWidget {
   final String title;
-  final String shortDescription;
   final String imageSrc;
 
-  const RecipeTitle({super.key, required this.title, required this.shortDescription, required this.imageSrc});
+  const RecipeTitle({super.key, required this.title, required this.imageSrc});
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +27,6 @@ class RecipeTitle extends StatelessWidget {
                     title,
                     textAlign: TextAlign.left,
                     textScaleFactor: 3,
-                    style: const TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    shortDescription,
-                    textAlign: TextAlign.left,
-                    textScaleFactor: 1,
                     style: const TextStyle(
                       color: Colors.white,
                     ),

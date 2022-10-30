@@ -30,10 +30,18 @@ class LinguiniApp extends StatelessWidget {
         useMaterial3: true,
       ),
       initialRoute: '/',
+      onGenerateRoute: (RouteSettings settings) {
+        print('build route for ${settings.name}');
+        var routes = <String, WidgetBuilder>{
+          '/': (context) => const Home(),
+          '/recipes/list': (context) => RecipeListPage(recipeId: settings.arguments as List<String>),
+          '/recipes/view': (context) => RecipePage(recipeId: settings.arguments as int,)
+        };
+        WidgetBuilder builder = routes[settings.name]!;
+        return MaterialPageRoute(builder: (ctx) => builder(ctx));
+      },
+
       routes: {
-        '/': (context) => const Home(),
-        '/recipes/list': (context) => RecipeListPage(),
-        '/recipes/view': (context) => RecipePage()
       },
     );
   }

@@ -57,12 +57,8 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             IconButton(
               iconSize: 100.0,
-              onPressed: () => Navigator.pushNamed(context, '/recipes/view'),
+              onPressed: () => Navigator.pushNamed(context, '/recipes/list', arguments: <String>["egg"]),
               icon: const Icon(Icons.add_a_photo),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, "/recipes/list"),
-              child: const Text('Add manually'),
             ),
           ],
         ),

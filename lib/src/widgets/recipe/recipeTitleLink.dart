@@ -30,7 +30,7 @@ class RecipeTitleLink extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.left,
-                    textScaleFactor: 3,
+                    textScaleFactor: 2,
                     style: const TextStyle(
                       color: Colors.white,
                     ),

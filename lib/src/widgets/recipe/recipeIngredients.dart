@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:linguini/src/widgets/shared/SingleExpandableCard.dart';
 
 class RecipeIngredients extends StatelessWidget {
-  final Map<String, int> ingredients;
+  final Map<String, String> ingredients;
 
   const RecipeIngredients({super.key, required this.ingredients});
 
@@ -14,7 +14,7 @@ class RecipeIngredients extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.add),
           title: Text(item.key),
-          trailing: Text(item.value.toString()),
+          trailing: Text(item.value),
         ),
       ]
     ));
